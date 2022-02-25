@@ -18,15 +18,18 @@ class Listener():
         
     @client.event
     async def on_raw_reaction_add(reaction):
-        print(f"New reaction in {reaction.channel_id}")
         try:
             channels = open('./data/reactionChannels.txt').read().splitlines()
             if f"{reaction.channel_id}:{reaction.message_id}" in channels:
+                
                 completed = open('./data/completed.txt').read().splitlines()
                 failed =  open('./data/failed.txt').read().splitlines()
-                if reaction.user_id in completed or reaction.user_id in failed:
+                done = failed+completed
+                if str(reaction.user_id) in done:
+                    print(f"New reaction in {reaction.channel_id}, user is already DMed")
                     pass
                 else:
+                    print(f"New reaction in {reaction.channel_id}, DMing user.")
                     sendMsg(user_id=reaction.user_id)
             else:
                 print(reaction.channel_id)
@@ -50,7 +53,8 @@ class sendMsg():
                 openChannel = client.post('https://discord.com/api/v10/users/@me/channels', json={"recipient_id": user_id})
                 id = openChannel.json().get('id')
                 if id != None:
-                    x = self.sendMsg(id, user_id, client)
+                    username = openChannel.get('recipients')[0].get('username')
+                    x = self.sendMsg(id, user_id, client, username)
                     if x == True:
                         with open('./data/completed.txt', 'a') as f:
                             f.write(f"{user_id}\n")
@@ -84,13 +88,12 @@ class sendMsg():
                     print(openChannel.json())
                     pass
     
-    def sendMsg(self, id, user_id, client):
+    def sendMsg(self, id, user_id, client, username):
         message = msg.format(user=f"<@{user_id}>")
-        #print(message)
         sendMsg = client.post(f'https://discord.com/api/v10/channels/{id}/messages', json={"content": message, "nonce": nonce(), "tts":False})
-        #print(sendMsg.json())
         if sendMsg.status_code == 200:
-            print(f"Successfully sent message {user_id}")
+            
+            print(f"Successfully sent message to {username}")
             return True
         elif sendMsg.status_code == 401:
             print("Invalid account")
