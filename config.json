@@ -1,0 +1,6 @@
+{
+
+    "listener_token":"", //Token that listens for new reactions
+    "message":"Hello {user}" // \n for new line, {user} to tag user
+
+}
