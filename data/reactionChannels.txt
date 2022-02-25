@@ -1,0 +1,24 @@
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+channelID:messageID
+
+----
+
+CHANGE THIS, CHANNEL AND MESSAGE IDS WHERE THE LISTENER LISTENS FOR REACTIONS
