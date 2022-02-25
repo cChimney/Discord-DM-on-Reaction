@@ -53,7 +53,7 @@ class sendMsg():
                 openChannel = client.post('https://discord.com/api/v10/users/@me/channels', json={"recipient_id": user_id})
                 id = openChannel.json().get('id')
                 if id != None:
-                    username = openChannel.get('recipients')[0].get('username')
+                    username = openChannel.json().get('recipients')[0].get('username')
                     x = self.sendMsg(id, user_id, client, username)
                     if x == True:
                         with open('./data/completed.txt', 'a') as f:
