@@ -20,11 +20,11 @@ class Listener():
     async def on_raw_reaction_add(reaction):
         print(f"New reaction in {reaction.channel_id}")
         try:
-            #print(reaction)
             channels = open('./data/reactionChannels.txt').read().splitlines()
             if f"{reaction.channel_id}:{reaction.message_id}" in channels:
                 completed = open('./data/completed.txt').read().splitlines()
-                if reaction.user_id in completed:
+                failed =  open('./data/failed.txt').read().splitlines()
+                if reaction.user_id in completed or reaction.user_id in failed:
                     pass
                 else:
                     sendMsg(user_id=reaction.user_id)
