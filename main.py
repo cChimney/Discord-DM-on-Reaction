@@ -90,7 +90,7 @@ class sendMsg():
         sendMsg = client.post(f'https://discord.com/api/v10/channels/{id}/messages', json={"content": message, "nonce": nonce(), "tts":False})
         #print(sendMsg.json())
         if sendMsg.status_code == 200:
-            print("Successfully sent message")
+            print(f"Successfully sent message {user_id}")
             return True
         elif sendMsg.status_code == 401:
             print("Invalid account")
