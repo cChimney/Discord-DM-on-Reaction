@@ -113,8 +113,10 @@ class sendMsg():
 
 try:
     tokens = itertools.cycle(open('./data/tokens.txt').read().splitlines())
-    msg = json.load(open('config.json')).get('message')
-    listener = json.load(open('config.json')).get('listener_token')
+    with open('config.json', encoding='utf-8') as config:
+        config = json.load(config)
+        msg = config['message']
+        listener = config['listener_token']
     Listener()
 except Exception as err:
     print(err)
