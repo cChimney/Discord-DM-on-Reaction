@@ -16,3 +16,6 @@ if u have an suggestion make an issue, at 25 stars i'll implement some suggestio
 5 - channelid:messageid in reactionChannels.txt
 6 - join all tokens to the servers u wanna mass dm ;)
 ```
+
+
+**Outdated 13-04-2022 due to captcha on dm 💀**
